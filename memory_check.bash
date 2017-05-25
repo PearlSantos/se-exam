@@ -35,6 +35,12 @@ USED_MEMORY=$( free | grep Mem: | awk '{ print int($3/$2*100) }' )
 
 if [[ "${USED_MEMORY}" -ge "${CRITTHRESH}" ]]
 then
+##get the current date and time to use as subject
+#now=$(date)
+##get the top 10 processes
+#message='ps -eo pid,comm,%cpu | sort -rk 3 | head'
+##send as email
+#echo "hello world" | mail -s "${now}" "${EADD}"
 exit 2;
 elif [[ "${USED_MEMORY}" -ge "${WARNTHRESH}" ]] && [[ "${USED_MEMORY}" -lt "${CRITTHRESH}" ]]; then
 exit 1;
